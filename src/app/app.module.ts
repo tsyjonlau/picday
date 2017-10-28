@@ -11,6 +11,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../page/login/login';
 import { ListPage } from '../pages/list/list';
 
 export const firebaseConfig = {
@@ -27,6 +28,7 @@ firebase.initializeApp(firebaseConfig);
   declarations: [
     MyApp,
     HomePage,
+    LoginPage,
     ListPage
   ],
   imports: [
@@ -39,6 +41,7 @@ firebase.initializeApp(firebaseConfig);
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage,
     ListPage
   ],
   providers: [

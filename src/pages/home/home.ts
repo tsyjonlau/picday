@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { AngularFireAuth  } from 'angularfire2/auth';
-import firebase from 'firebase';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +13,7 @@ export class HomePage {
   }
 
   login() {
-
+    this.navCtrl.push(LoginPage);
   }
 
   signup() {
