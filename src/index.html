@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
+  <script type='texte/typescript src="index.js"></script>
   <title>Ionic App</title>
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
@@ -25,6 +26,20 @@
 
   <link href="build/main.css" rel="stylesheet">
 
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAmORyTzdXawXfm39yUDg8XoxLTeW-lj-8",
+        authDomain: "picday-39afd.firebaseapp.com",
+        databaseURL: "https://picday-39afd.firebaseio.com",
+        projectId: "picday-39afd",
+        storageBucket: "picday-39afd.appspot.com",
+        messagingSenderId: "146132231289"
+      };
+      firebase.initializeApp(config);
+    </script>
+
 </head>
 <body>
 
@@ -32,6 +47,8 @@
   <ion-app></ion-app>
 
   <!-- The polyfills js is generated during the build process -->
+
+
   <script src="build/polyfills.js"></script>
   <script src="build/vendor.js"></script>
   <!-- The bundle js is generated during the build process -->

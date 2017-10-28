@@ -1,13 +1,22 @@
 page-welcome {
   .splash-bg {
     position: relative;
-    background: url('../assets/img/splashbg.png') no-repeat transparent;
+    background: url('../assets/img/background_dark.png') no-repeat transparent;
     background-size: cover;
-    height: 45%;
+    height: 100%;
     z-index: 1;
     background-repeat: repeat-x;
-    animation: animatedBackground 40s linear infinite;
   }
+
+.boutonGoogle {
+	padding:6px 0 6px 0;
+	font:Bold 70px Arial;
+	background:#d34836;
+	color:#fff;
+	width:530px;
+	border-radius:2px;
+	border:none;
+}
 
   @keyframes animatedBackground {
     from { background-position: 0 0; }
