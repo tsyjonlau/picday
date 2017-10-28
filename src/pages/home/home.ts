@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import firebase from 'firebase';
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
