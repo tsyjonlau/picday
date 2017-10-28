@@ -2,5 +2,6 @@ node_modules/
 platforms/
 plugins/
 resources/
-www
+www/index.html/
+www/build/
 .idea

@@ -11,8 +11,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../page/login/login';
-import { ListPage } from '../pages/list/list';
+import { LoginPage } from '../pages/login/login';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAmORyTzdXawXfm39yUDg8XoxLTeW-lj-8",
@@ -28,8 +27,7 @@ firebase.initializeApp(firebaseConfig);
   declarations: [
     MyApp,
     HomePage,
-    LoginPage,
-    ListPage
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -41,8 +39,7 @@ firebase.initializeApp(firebaseConfig);
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage,
-    ListPage
+    LoginPage
   ],
   providers: [
     StatusBar,

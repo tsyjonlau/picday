@@ -13,6 +13,7 @@ export class HomePage {
   }
 
   login() {
+    console.log("wesheuh");
     this.navCtrl.push(LoginPage);
   }
 
