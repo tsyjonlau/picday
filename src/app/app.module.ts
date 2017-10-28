@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { GooglePlus } from '@ionic-native/google-plus';
 import firebase from 'firebase';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -12,6 +11,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { ListPage } from '../pages/list/list';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAmORyTzdXawXfm39yUDg8XoxLTeW-lj-8",
@@ -27,7 +28,9 @@ firebase.initializeApp(firebaseConfig);
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    SignupPage,
+    ListPage
   ],
   imports: [
     BrowserModule,
@@ -39,13 +42,14 @@ firebase.initializeApp(firebaseConfig);
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    SignupPage,
+    ListPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GooglePlus
   ]
 })
 export class AppModule {}

@@ -3,14 +3,14 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 
 import firebase from 'firebase';
 
-import {ListPage} from "../list/list";
+import { ListPage } from '../list/list';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-signup',
+  templateUrl: 'signup.html',
 })
-export class LoginPage {
+export class SignupPage {
 
   account: { email: string, password: string } = {
     email: '',
@@ -41,5 +41,4 @@ export class LoginPage {
         }
       );
   }
-
 }
