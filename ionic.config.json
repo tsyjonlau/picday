@@ -1,6 +1,6 @@
 {
-  "name": "picday",
-  "app_id": "c007d478",
+  "name": "blank",
+  "app_id": "",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
