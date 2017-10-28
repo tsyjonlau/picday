@@ -1,7 +1,9 @@
 <ion-content scroll="false">
   <div class="splash-bg">
     <div id="firebaseui-auth-container"></div>
-    <button ion-button block (click)="googleSignin()">{{ 'SIGNUP' }}</button>
+    <button ion-button block (click)="googleSignin()" block outline>
+      <ion-icon name="logo-googleplus"></ion-icon> Log in with Google
+    </button>
   </div>
   <script type="text/javascript" src="home.ts"></script>
 </ion-content>
