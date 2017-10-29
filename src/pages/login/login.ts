@@ -26,7 +26,7 @@ export class LoginPage {
   }
 
   onSubmit() {
-    firebase.auth().createUserWithEmailAndPassword(this.account.email, this.account.password)
+    firebase.auth().signInWithEmailAndPassword(this.account.email, this.account.password)
       .then(
         (value) => {
           this.navCtrl.push(ListPage);
