@@ -1,25 +1,31 @@
-<ion-header>
+<!--ion-header>
   <ion-navbar hideBackButton="true">
     <ion-buttons start>
       <!--button ion-button>
         <ion-icon name="contact"></ion-icon>
-      </button-->
+      </button>
     </ion-buttons>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Title
+      Picday
     </ion-title>
     <ion-buttons end>
       <!--button ion-button (click)="doClick()">
         <ion-icon name="more"></ion-icon>
-      </button-->
+      </button>
     </ion-buttons>
   </ion-navbar>
+</ion-header-->
 
-</ion-header>
-
-<ion-content>
-  <p>Coucou</p>
+<ion-content class="page-list-background">
+  <ion-list>
+    <button ion-button (click)="openPage(searchPage)">
+      Search user
+    </button>
+    <button ion-button (click)="signOut()">
+      Sign out
+    </button>
+  </ion-list>
 </ion-content>

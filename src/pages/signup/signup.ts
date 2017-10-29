@@ -29,6 +29,10 @@ export class SignupPage {
     firebase.auth().createUserWithEmailAndPassword(this.account.email, this.account.password)
       .then(
         (value) => {
+          let firebaseRef = firebase.database().ref();
+          firebaseRef.child('users/' + value.uid).set({
+              email: value.email
+          });
           this.navCtrl.push(ListPage);
         },
         (error) => {

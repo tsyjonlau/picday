@@ -13,6 +13,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ListPage } from '../pages/list/list';
+import { SearchPage } from '../pages/search/search';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAmORyTzdXawXfm39yUDg8XoxLTeW-lj-8",
@@ -30,7 +31,8 @@ firebase.initializeApp(firebaseConfig);
     HomePage,
     LoginPage,
     SignupPage,
-    ListPage
+    ListPage,
+    SearchPage
   ],
   imports: [
     BrowserModule,
@@ -44,13 +46,13 @@ firebase.initializeApp(firebaseConfig);
     HomePage,
     LoginPage,
     SignupPage,
-    ListPage
+    ListPage,
+    SearchPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NavController
   ]
 })
 export class AppModule {}
