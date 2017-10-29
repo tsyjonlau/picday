@@ -10,12 +10,15 @@
     </ion-list>
   </form>
 
-  <ion-list>
-    <ion-item>
+  <ion-item>
+    <div *ngIf="result.length > 0">
+      <button ion-button color="primary" block (click)="goToUser()">
+        {{ result }}
+      </button>
+      <button ion-button (click)="followUser()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </div>
+  </ion-item>
 
-    </ion-item>
-    <button ion-button>
-      <ion-icon name="arrow-dropright"></ion-icon>
-    </button>
-  </ion-list>
 </ion-content>

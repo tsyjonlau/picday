@@ -3,6 +3,8 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 
 import firebase from 'firebase';
 
+import { UserPage } from '../user/user';
+
 @IonicPage()
 @Component({
   selector: 'page-search',
@@ -10,7 +12,10 @@ import firebase from 'firebase';
 })
 export class SearchPage {
 
-  query = '';
+  query: string = '';
+  result: string = '';
+  users: object = {};
+  key_to_follow: string = '';
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -41,12 +46,25 @@ export class SearchPage {
 
       if (this.users[key].hasOwnProperty('email') &&
           this.users[key]['email'] == this.query) {
-        console.log("Trouvay");
+        this.result = this.query;
+        this.key_to_follow = key;
       }
       else {
-        console.log("Pas trouvay")
+
       }
     }
+  }
+
+  followUser() {
+    let user = firebase.auth().currentUser;
+    let firebaseRef = firebase.database().ref();
+    firebaseRef.child('users/' + user.uid + '/following/' + this.key_to_follow).set({
+        email: this.result
+    });
+  }
+
+  goToUser() {
+    this.navCtrl.push(UserPage);
   }
 }
 
