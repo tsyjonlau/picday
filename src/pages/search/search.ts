@@ -24,7 +24,6 @@ export class SearchPage {
       .then(
         (snapshot) => {
           this.users = snapshot.val();
-          console.log(this.users);
         },
         (error) => {
           let toast = this.toastCtrl.create({
@@ -58,17 +57,13 @@ export class SearchPage {
   followUser() {
     let user = firebase.auth().currentUser;
     let firebaseRef = firebase.database().ref();
-    firebaseRef.child('users/' + user.uid + '/following/' + this.key_to_follow).set({
-        email: this.result
+    firebaseRef.child('users/' + user.uid + '/following/').set({
+        [this.key_to_follow]: this.result
     });
   }
 
   goToUser() {
     this.navCtrl.push(UserPage);
-  }
-
-  addToFav() {
-    
   }
 }
 
