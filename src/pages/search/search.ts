@@ -15,26 +15,17 @@ export class SearchPage {
   query: string = '';
   result: string = '';
   users: object = {};
-  key_to_follow: string = '';
+  keyUserFound: string = '';
+  alreadyFollowed: boolean = false;
+  isSelf: boolean = false;
+  currentUser: object = {};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController) {
-    firebase.database().ref('users/').once('value')
-      .then(
-        (snapshot) => {
-          this.users = snapshot.val();
-        },
-        (error) => {
-          let toast = this.toastCtrl.create({
-            message: "Error " + error.code + ": " + error.message,
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
-        });
+    this.currentUser = firebase.auth().currentUser;
+    this.fetchUsers();
   }
-
 
   ionViewDidLoad() {
   }
@@ -46,24 +37,61 @@ export class SearchPage {
       if (this.users[key].hasOwnProperty('email') &&
           this.users[key]['email'] == this.query) {
         this.result = this.query;
-        this.key_to_follow = key;
+        this.keyUserFound = key;
+        this.isSelf = (key == this.currentUser.uid)? true : false;
+        this.checkFollowingState();
       }
       else {
-
+        // modal gestion d'erreur
       }
     }
   }
 
   followUser() {
-    let user = firebase.auth().currentUser;
-    let firebaseRef = firebase.database().ref();
-    firebaseRef.child('users/' + user.uid + '/following/').set({
-        [this.key_to_follow]: this.result
+    firebase.database().ref().child('users/' + this.currentUser.uid + '/following/').set({
+        [this.keyUserFound]: this.result
     });
+    this.alreadyFollowed = true;
+    this.fetchUsers()
+  }
+
+  unfollowUser() {
+    firebase.database().ref().child('users/' + this.currentUser.uid + '/following/' + this.keyUserFound).remove();
+    this.alreadyFollowed = false;
+    this.fetchUsers()
   }
 
   goToUser() {
     this.navCtrl.push(UserPage);
+  }
+
+  fetchUsers() {
+    firebase.database().ref('users/').once('value')
+      .then(
+        (snapshot) => {
+          this.users = snapshot.val();
+        },
+        (error) => this.errorHandling(error)
+      );
+  }
+
+  checkFollowingState() {
+    for (let key in this.users[this.currentUser.uid].following) {
+      if (this.users[this.currentUser.uid].following[key] == this.result) {
+        this.alreadyFollowed = true;
+        return;
+      }
+    }
+    this.alreadyFollowed = false;
+  }
+
+  errorHandling(error) {
+    let toast = this.toastCtrl.create({
+      message: "Error " + error.code + ": " + error.message,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }
 
