@@ -53,6 +53,10 @@ export class ListPage {
       this.images[i] = randurl+randnbr
       //console.log(this.images[i])
     }
-    console.log(this.images)
+    //console.log(this.images)
+  }
+
+  addImageToGallery() {
+    console.log("hello");
   }
 }

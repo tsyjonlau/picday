@@ -66,6 +66,10 @@ export class SearchPage {
   goToUser() {
     this.navCtrl.push(UserPage);
   }
+
+  addToFav() {
+    
+  }
 }
 
 
