@@ -1,14 +1,16 @@
-<ion-content>
-  <div class="splash-bg">
-    <button ion-button (click)="login()">
-      Login
-    </button>
-    <button ion-button (click)="signup()">
-      Sign-up
-    </button>
-
-
-
-
-  </div>
+<ion-content class="splash-bg">
+  <ion-grid class="page-home-grid">
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button class="page-home-button" color="dark" (click)="login()">
+          Login
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button class="page-home-button" color="dark" (click)="signup()">
+          Sign-up
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

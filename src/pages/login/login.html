@@ -1,16 +1,15 @@
 <ion-content class="page-login-background">
-  <form (submit)="onSubmit()">
-    <ion-list>
-      <ion-item>
-        <ion-input type="email" [(ngModel)]="account.email" name="email" placeholder="E-mail address"></ion-input>
-      </ion-item>
-      <ion-item>
+  <form (submit)="onSubmit()" class="page-login-form">
+    <ion-grid>
+      <ion-row row-3>
+         <ion-input type="email" [(ngModel)]="account.email" name="email" placeholder="E-mail address"></ion-input>
+      </ion-row>
+      <ion-row row-3>
         <ion-input type="password" [(ngModel)]="account.password" name="password" placeholder="Password"></ion-input>
-      </ion-item>
-
-      <div padding>
-        <button ion-button color="primary" block>Login</button>
-      </div>
-    </ion-list>
+      </ion-row>
+      <ion-row row-6>
+        <button ion-button color="dark" block>Login</button>
+      </ion-row>
+    </ion-grid>
   </form>
 </ion-content>
