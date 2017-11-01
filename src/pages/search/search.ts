@@ -18,7 +18,7 @@ export class SearchPage {
   keyUserFound: string = '';
   alreadyFollowed: boolean = false;
   isSelf: boolean = false;
-  currentUser: object = {};
+  currentUser = null;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -42,7 +42,12 @@ export class SearchPage {
         this.checkFollowingState();
       }
       else {
-        // modal gestion d'erreur
+        let toast = this.toastCtrl.create({
+          message: "Error: User not found",
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
       }
     }
   }
