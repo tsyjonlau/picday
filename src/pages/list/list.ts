@@ -19,6 +19,7 @@ export class ListPage {
   private searchPage;
   private galleryPage;
   images = [];
+  users: object = {};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -50,16 +51,16 @@ export class ListPage {
 
   randUrl() {
   var randurl = "https://picsum.photos/200/300?image=";
-    //console.log(randurl+randnbr);
     for(var i=0; i<100 ;i++){
       var randnbr = Math.floor((Math.random() * 500) + 1);
       this.images[i] = randurl+randnbr
-      //console.log(this.images[i])
     }
-    //console.log(this.images)
   }
 
   addImageToGallery(image) {
-    console.log(image);
+    let user = firebase.auth().currentUser;
+    let firebaseRef = firebase.database().ref();
+    firebaseRef.child('users/' + user.uid + '/gallery/').push(image);
   }
+
 }
