@@ -1,24 +1,36 @@
-<ion-content>
-  <form (submit)="onSubmit()">
-    <ion-list>
-      <ion-item>
-        <ion-input type="query" [(ngModel)]="query" name="query" placeholder="User e-mail address"></ion-input>
-      </ion-item>
-      <div padding>
-        <button ion-button color="primary" block>Search</button>
-      </div>
-    </ion-list>
-  </form>
+<ion-content class="page-search-background">
 
-  <ion-item>
-    <div *ngIf="result.length > 0">
-      <button ion-button color="primary" block (click)="goToUser()">
-        {{ result }}
-      </button>
-      <button ion-button (click)="followUser()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </div>
+  <ion-item class="page-search-item">
+    <form (submit)="onSubmit()">
+      <ion-list class="page-search-list">
+        <ion-item>
+          <ion-input type="query" [(ngModel)]="query" name="query" placeholder="User e-mail address"></ion-input>
+        </ion-item>
+        <div padding>
+          <button ion-button color="primary" block>Search</button>
+        </div>
+      </ion-list>
+    </form>
+  </ion-item>
+
+  <ion-item class="page-search-item" *ngIf="result.length > 0">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-10>
+          <button ion-button color="primary" block (click)="goToUser()">
+            {{ result }}
+          </button>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button color="secondary" [hidden]="alreadyFollowed || isSelf" (click)="followUser()">
+            <ion-icon name="add"></ion-icon>
+          </button>
+          <button ion-button color="danger" [hidden]="!alreadyFollowed || isSelf" (click)="unfollowUser()">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-item>
 
 </ion-content>
