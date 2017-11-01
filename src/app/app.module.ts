@@ -15,6 +15,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { ListPage } from '../pages/list/list';
 import { SearchPage } from '../pages/search/search';
 import { UserPage } from '../pages/user/user';
+import {GalleryPage} from "../pages/gallery/gallery";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAmORyTzdXawXfm39yUDg8XoxLTeW-lj-8",
@@ -34,7 +35,8 @@ firebase.initializeApp(firebaseConfig);
     SignupPage,
     ListPage,
     SearchPage,
-    UserPage
+    UserPage,
+    GalleryPage,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ firebase.initializeApp(firebaseConfig);
     SignupPage,
     ListPage,
     SearchPage,
-    UserPage
+    UserPage,
+    GalleryPage
   ],
   providers: [
     StatusBar,

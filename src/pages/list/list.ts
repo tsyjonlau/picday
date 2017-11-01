@@ -5,6 +5,7 @@ import firebase from 'firebase';
 
 import { HomePage } from '../home/home';
 import { SearchPage } from '../search/search';
+import { GalleryPage } from '../gallery/gallery';
 
 @Component({
   templateUrl: 'list.html',
@@ -16,6 +17,7 @@ export class ListPage {
   //icons: string[];
   //items: Array<{ title: string, note: string, icon: string }>;
   private searchPage;
+  private galleryPage;
   images = [];
 
   constructor(public navCtrl: NavController,
@@ -24,6 +26,7 @@ export class ListPage {
     // If we navigated to this page, we will have an item available as a nav param
     //this.selectedItem = navParams.get('item');
     this.searchPage = SearchPage;
+    this.galleryPage = GalleryPage;
     this.randUrl()
   }
 
