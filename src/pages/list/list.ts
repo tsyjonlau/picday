@@ -51,7 +51,7 @@ export class ListPage {
   }
 
   randUrl() {
-  var randurl = "https://picsum.photos/200/300?image=";
+    var randurl = "https://picsum.photos/200/300?image=";
     for(var i=0; i<100 ;i++){
       var randnbr = Math.floor((Math.random() * 500) + 1);
       this.images[i] = randurl+randnbr

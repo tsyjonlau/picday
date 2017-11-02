@@ -43,10 +43,10 @@
       <button ion-button class="margin_photo" color="danger"
               [hidden]="!alreadyLikedImage || isSelf" (click)="removeImageToGallery()">Retirer</button>
 -->
-
-      <button ion-button class="margin_photo" (click)="addImageToGallery(image)">Ajouter</button>
-      <button ion-button class="margin_photo" (click)="removeImageToGallery(image)">Enlever</button>
-
+      <ion-col>
+      <button ion-button class="margin_photo green" (click)="addImageToGallery(image)">Ajouter</button>
+      <button ion-button class="margin_photo red" (click)="removeImageToGallery(image)">Enlever</button>
+      </ion-col>
     </ion-row>
   </ion-grid>
 
