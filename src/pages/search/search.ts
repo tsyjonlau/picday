@@ -27,9 +27,6 @@ export class SearchPage {
     this.fetchUsers();
   }
 
-  ionViewDidLoad() {
-  }
-
   onSubmit() {
     for (var key in this.users) {
       if (!this.users.hasOwnProperty(key)) continue;
@@ -42,12 +39,7 @@ export class SearchPage {
         this.checkFollowingState();
       }
       else {
-        let toast = this.toastCtrl.create({
-          message: "Error: User not found",
-          duration: 3000,
-          position: 'bottom'
-        });
-        toast.present();
+        // gestion d'erreur mais ptet pas avec ToastController car compotement louche
       }
     }
   }
@@ -67,7 +59,11 @@ export class SearchPage {
   }
 
   goToUser() {
-    this.navCtrl.push(UserPage);
+    this.navCtrl.push(UserPage, {
+      user: this.result,
+      uid: this.keyUserFound,
+      following: this.alreadyFollowed
+    });
   }
 
   fetchUsers() {
@@ -99,6 +95,3 @@ export class SearchPage {
     toast.present();
   }
 }
-
-
-
