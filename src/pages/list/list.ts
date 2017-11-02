@@ -20,6 +20,7 @@ export class ListPage {
   private galleryPage;
   images = [];
   users: object = {};
+  alreadyLikedImage: boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -60,7 +61,33 @@ export class ListPage {
   addImageToGallery(image) {
     let user = firebase.auth().currentUser;
     let firebaseRef = firebase.database().ref();
-    firebaseRef.child('users/' + user.uid + '/gallery/').push(image);
+    firebase.database().ref().child('users/' + user.uid + '/gallery/').push(image);
+    this.alreadyLikedImage = true;
+  }
+
+  removeImageToGallery(image) {
+    let user = firebase.auth().currentUser;
+    firebase.database().ref('users/' + user.uid + '/gallery/').once('value')
+      .then(
+        (snapshot) => {
+          for (let key in snapshot.val()) {
+            if (snapshot.val()[key] === image) {
+              firebase.database().ref().child('users/' + user.uid + '/gallery/' + key).remove();
+            }
+          }
+        },
+        (error) => this.errorHandling(error)
+      );
+    this.alreadyLikedImage = false;
+  }
+
+  errorHandling(error) {
+    let toast = this.toastCtrl.create({
+      message: "Error " + error.code + ": " + error.message,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 
 }

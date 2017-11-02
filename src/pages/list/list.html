@@ -34,8 +34,19 @@
 
   <ion-grid>
     <ion-row *ngFor="let image of images">
+      <!--<image-button></image-button>-->
       <ion-img class="margin_photo" width="200" height="300" src={{image}}></ion-img>
+
+<!--
+      <button ion-button class="margin_photo" color="secondary"
+              [hidden]="alreadyLikedImage || isSelf" (click)="addImageToGallery()">Ajouter</button>
+      <button ion-button class="margin_photo" color="danger"
+              [hidden]="!alreadyLikedImage || isSelf" (click)="removeImageToGallery()">Retirer</button>
+-->
+
       <button ion-button class="margin_photo" (click)="addImageToGallery(image)">Ajouter</button>
+      <button ion-button class="margin_photo" (click)="removeImageToGallery(image)">Enlever</button>
+
     </ion-row>
   </ion-grid>
 
