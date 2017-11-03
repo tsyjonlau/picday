@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
-
+import { DeviceMotion } from '@ionic-native/device-motion';
 
 import firebase from 'firebase';
 import { AngularFireModule } from 'angularfire2';
@@ -68,7 +68,8 @@ firebase.initializeApp(firebaseConfig);
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PicturesProvider,
-    GoogleAnalytics
+    GoogleAnalytics,
+    DeviceMotion
   ]
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
 
 import firebase from 'firebase';
@@ -18,62 +18,28 @@ export class ListPage {
   private galleryPage;
   private friendPage;
 
-  private lastX:number;
-  private lastY:number;
-  private lastZ:number;
-  private moveCounter:number = 0;
+  private lastX: number;
+  private lastY: number;
+  private lastZ: number;
+  private moveCounter: number = 0;
 
+  imageNbs = [];
   images: any;
   users: object = {};
+
   alreadyLikedImage: boolean = false;
-  imageNbs = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController,
               private picsProvider: PicturesProvider,
               private ga: GoogleAnalytics,
-              private deviceMotion: DeviceMotion) {
-    // If we navigated to this page, we will have an item available as a nav param
-    //this.selectedItem = navParams.get('item');
+              private deviceMotion: DeviceMotion,
+              public alertCtrl: AlertController) {
     if (this.ga) this.ga.trackView('List page');
     this.galleryPage = GalleryPage;
     this.friendPage = FriendPage;
     this.trackMovement();
-  }
-
-  trackMovement() {
-    var subscription = DeviceMotion.watchAcceleration({frequency:200}).subscribe(acc => {
-
-            if(!this.lastX) {
-              this.lastX = acc.x;
-              this.lastY = acc.y;
-              this.lastZ = acc.z;
-              return;
-            }
-
-            let deltaX:number, deltaY:number, deltaZ:number;
-            deltaX = Math.abs(acc.x-this.lastX);
-            deltaY = Math.abs(acc.y-this.lastY);
-            deltaZ = Math.abs(acc.z-this.lastZ);
-
-            if(deltaX + deltaY + deltaZ > 3) {
-              this.moveCounter++;
-            } else {
-              this.moveCounter = Math.max(0, --this.moveCounter);
-            }
-
-            if(this.moveCounter > 2) {
-              console.log('SHAKE');
-              this.loadCats();
-              this.moveCounter=0;
-            }
-
-            this.lastX = acc.x;
-            this.lastY = acc.y;
-            this.lastZ = acc.z;
-
-          });
   }
 
   ionViewWillEnter() {
@@ -131,6 +97,38 @@ export class ListPage {
         (error) => this.errorHandling(error)
       );
     this.alreadyLikedImage = false;
+  }
+
+  trackMovement() {
+    var subscription = this.deviceMotion.watchAcceleration({frequency:500}).subscribe(acc => {
+
+      if (!this.lastX) {
+        this.lastX = acc.x;
+        this.lastY = acc.y;
+        this.lastZ = acc.z;
+        return;
+      }
+
+      let deltaX:number, deltaY:number, deltaZ:number;
+      deltaX = Math.abs(acc.x-this.lastX);
+      deltaY = Math.abs(acc.y-this.lastY);
+      deltaZ = Math.abs(acc.z-this.lastZ);
+
+      if (deltaX + deltaY + deltaZ > 6) {
+        this.moveCounter++;
+      } else {
+        this.moveCounter = Math.max(0, --this.moveCounter);
+      }
+
+      if (this.moveCounter > 2) {
+        this.randUrl();
+        this.moveCounter=0;
+      }
+
+      this.lastX = acc.x;
+      this.lastY = acc.y;
+      this.lastZ = acc.z;
+    });
   }
 
   errorHandling(error) {
