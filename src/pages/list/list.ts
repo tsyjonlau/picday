@@ -42,7 +42,7 @@ export class ListPage {
     this.friendPage = FriendPage;
     this.currentUser = firebase.auth().currentUser;
 
-    //this.trackMovement();
+    this.trackMovement();
   }
 
   ionViewWillEnter() {
