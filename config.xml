@@ -86,4 +86,5 @@
     <plugin name="cordova-plugin-googleplus" spec="^5.1.1">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.146132231289-jii5nvbovl9lp0d6gm6ihhikqkr4996t" />
     </plugin>
+    <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
 </widget>
