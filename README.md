@@ -1,30 +1,23 @@
 ## Picday
 
-*Be [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+Epitech promotion 2018 - Mobile Hybrid Project - Group 2
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+Members:
+- [Benjamin Lépine](https://github.com/benjaminlepine): attented the course
+- [Tsy-Jon Lau](https://github.com/tsyjonlau): did not attended the course
+
+< Description > 
 
 ### Back-end
 
+We chose to use Firebase because this suits all our requirements such as:
+- Authentication
+- Database
 
+### Native functionalities
 
-### Fonctions natives
+We used the accelerometer of the phone in order to detect shake movements which resets the random pictures displayed on the list of random pictures.
 
-### 
+### Analytics
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
-```
-
-Then, to run it, cd into `myBlank` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
-
+[Tableau de bord Google Analytics](https://analytics.google.com/analytics/web/template?uid=mhVB0u6uTSi4XdS0eNQ1jw)
