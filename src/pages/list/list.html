@@ -1,41 +1,31 @@
-<!--ion-header>
-  <ion-navbar hideBackButton="true">
-    <ion-buttons start>
-      <!--button ion-button>
-        <ion-icon name="contact"></ion-icon>
-      </button>
-    </ion-buttons>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Picday
-    </ion-title>
-    <ion-buttons end>
-      <!--button ion-button (click)="doClick()">
-        <ion-icon name="more"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header-->
+<ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button color="dark" (click)="openPage(friendPage)">
+          Friends
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button color="dark" (click)="openPage(galleryPage)">
+          Gallery
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button color="dark" (click)="signOut()">
+          Logout
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
 
 <ion-content class="page-list-background">
-  <ion-list>
-    <button ion-button (click)="openPage(searchPage)">
-      Search
-    </button>
-    <button ion-button (click)="openPage(galleryPage)">
-      Gallery
-    </button>
-    <button ion-button (click)="signOut()">
-      Logout
-    </button>
-  </ion-list>
-
   <ion-grid>
     <ion-row *ngFor="let image of images">
       <!--<image-button></image-button>-->
-      <ion-img class="margin_photo" width="200" height="300" src={{image}}></ion-img>
+      <img class="margin_photo" width="200" height="300" src={{image}}>
 
 <!--
       <button ion-button class="margin_photo" color="secondary"
@@ -44,11 +34,10 @@
               [hidden]="!alreadyLikedImage || isSelf" (click)="removeImageToGallery()">Retirer</button>
 -->
       <ion-col>
-      <button ion-button class="margin_photo green" (click)="addImageToGallery(image)">Ajouter</button>
-      <button ion-button class="margin_photo red" (click)="removeImageToGallery(image)">Enlever</button>
+        <button ion-button class="margin_photo green" (click)="addImageToGallery(image)">Add</button>
+        <button ion-button class="margin_photo red" (click)="removeImageFromGallery(image)">Remove</button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
 </ion-content>
-

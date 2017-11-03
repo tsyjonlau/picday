@@ -18,7 +18,7 @@ export class SearchPage {
   keyUserFound: string = '';
   alreadyFollowed: boolean = false;
   isSelf: boolean = false;
-  currentUser = null;
+  currentUser: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,

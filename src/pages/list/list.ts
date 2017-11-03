@@ -1,37 +1,46 @@
-import {Component} from "@angular/core";
-import {NavController, NavParams, ToastController} from 'ionic-angular';
+import { Component, OnInit } from "@angular/core";
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import firebase from 'firebase';
 
 import { HomePage } from '../home/home';
-import { SearchPage } from '../search/search';
 import { GalleryPage } from '../gallery/gallery';
+import { FriendPage } from '../friend/friend';
+import { PicturesProvider } from '../../providers/pictures/pictures';
 
 @Component({
   templateUrl: 'list.html',
   selector: 'page-list'
 })
-export class ListPage {
-
+export class ListPage implements OnInit  {
   //selectedItem: any;
   //icons: string[];
   //items: Array<{ title: string, note: string, icon: string }>;
-  private searchPage;
   private galleryPage;
+  private friendPage;
   images = [];
   users: object = {};
   alreadyLikedImage: boolean = false;
+  imageNbs = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              private picsProvider: PicturesProvider) {
     // If we navigated to this page, we will have an item available as a nav param
     //this.selectedItem = navParams.get('item');
-    this.searchPage = SearchPage;
     this.galleryPage = GalleryPage;
-    this.randUrl()
+    this.friendPage = FriendPage;
   }
 
+  ngOnInit() {
+    this.picsProvider.getPictures().subscribe((data) => {
+      for (let key in data) {
+        this.imageNbs.push(data[key].id);
+      }
+      this.randUrl();
+    });
+  }
 
   signOut() {
     firebase.auth().signOut().then(() => {
@@ -52,9 +61,9 @@ export class ListPage {
 
   randUrl() {
     var randurl = "https://picsum.photos/200/300?image=";
-    for(var i=0; i<100 ;i++){
-      var randnbr = Math.floor((Math.random() * 500) + 1);
-      this.images[i] = randurl+randnbr
+    for(var i = 0; i < 100; i++){
+      var randnbr = Math.floor((Math.random() * this.imageNbs.length) + 1);
+      this.images[i] = randurl + this.imageNbs[randnbr - 1];
     }
   }
 
@@ -65,7 +74,7 @@ export class ListPage {
     this.alreadyLikedImage = true;
   }
 
-  removeImageToGallery(image) {
+  removeImageFromGallery(image) {
     let user = firebase.auth().currentUser;
     firebase.database().ref('users/' + user.uid + '/gallery/').once('value')
       .then(

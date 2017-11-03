@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http';
 
 import firebase from 'firebase';
 import { AngularFireModule } from 'angularfire2';
@@ -15,7 +16,9 @@ import { SignupPage } from '../pages/signup/signup';
 import { ListPage } from '../pages/list/list';
 import { SearchPage } from '../pages/search/search';
 import { UserPage } from '../pages/user/user';
-import {GalleryPage} from "../pages/gallery/gallery";
+import { GalleryPage } from '../pages/gallery/gallery';
+import { FriendPage } from '../pages/friend/friend';
+import { PicturesProvider } from '../providers/pictures/pictures';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAmORyTzdXawXfm39yUDg8XoxLTeW-lj-8",
@@ -37,12 +40,14 @@ firebase.initializeApp(firebaseConfig);
     SearchPage,
     UserPage,
     GalleryPage,
+    FriendPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,12 +58,14 @@ firebase.initializeApp(firebaseConfig);
     ListPage,
     SearchPage,
     UserPage,
-    GalleryPage
+    GalleryPage,
+    FriendPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PicturesProvider,
   ]
 })
 export class AppModule {}
