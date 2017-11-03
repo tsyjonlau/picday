@@ -20,7 +20,10 @@ import { SearchPage } from '../pages/search/search';
 import { UserPage } from '../pages/user/user';
 import { GalleryPage } from '../pages/gallery/gallery';
 import { FriendPage } from '../pages/friend/friend';
+
 import { PicturesProvider } from '../providers/pictures/pictures';
+
+import { ImageAndButtonComponent } from "../components/image-and-button/image-and-button";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAmORyTzdXawXfm39yUDg8XoxLTeW-lj-8",
@@ -42,7 +45,8 @@ firebase.initializeApp(firebaseConfig);
     SearchPage,
     UserPage,
     GalleryPage,
-    FriendPage
+    FriendPage,
+    ImageAndButtonComponent
   ],
   imports: [
     BrowserModule,

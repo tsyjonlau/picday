@@ -13,14 +13,7 @@
 </ion-header>
 
 <ion-content padding class="page-user-background">
-  <ion-grid>
-    <ion-row *ngFor="let image of images">
-      <ion-col col-8>
-        <img width="200" height="300" [src]="image">
-      </ion-col>
-      <ion-col col-2>
-        <button ion-button color="secondary" (click)="addImageToGallery(image)">Add</button>
-      </ion-col>
-    </ion-row>
+  <ion-grid *ngFor="let image of images">
+    <image-and-button [imageLink]="image" [userGallery]="userGallery" [waitBeforeUpdateLikeStatus]="false"></image-and-button>
   </ion-grid>
 </ion-content>

@@ -15,11 +15,13 @@ export class FriendPage {
 
   friends: any;
   currentUser: any;
+  userGallery: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController) {
     this.currentUser = firebase.auth().currentUser;
+    this.userGallery = this.navParams.get('userGallery')
   }
 
   ionViewWillEnter() {
@@ -43,7 +45,8 @@ export class FriendPage {
     this.navCtrl.push(UserPage, {
       user: friend.email,
       uid: friend.uid,
-      following: true
+      following: true,
+      userGallery: this.userGallery
     })
   }
 
@@ -57,7 +60,9 @@ export class FriendPage {
   }
 
   goToSearchPage() {
-    this.navCtrl.push(SearchPage);
+    this.navCtrl.push(SearchPage, {
+      userGallery: this.userGallery
+    });
   }
 
   followUser(friend) {

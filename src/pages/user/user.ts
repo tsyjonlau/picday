@@ -15,6 +15,7 @@ export class UserPage {
   following: any;
   currentUser: any;
   images = [];
+  userGallery: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,6 +23,8 @@ export class UserPage {
     this.consultedUser = this.navParams.get("user");
     this.consultedUid = this.navParams.get("uid");
     this.following = this.navParams.get("following");
+    this.userGallery = this.navParams.get("userGallery");
+    console.log(this.userGallery);
     this.currentUser = firebase.auth().currentUser;
     this.fetchGallery();
   }

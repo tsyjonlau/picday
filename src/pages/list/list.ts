@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
-import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+import { DeviceMotion } from '@ionic-native/device-motion';
 
 import firebase from 'firebase';
 
@@ -9,10 +9,10 @@ import { GalleryPage } from '../gallery/gallery';
 import { FriendPage } from '../friend/friend';
 import { PicturesProvider } from '../../providers/pictures/pictures';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
-// if(GoogleAnalytics)   GoogleAnalytics.trackEvent('Click', 'openPage', null, null);
+
 @Component({
   templateUrl: 'list.html',
-  selector: 'page-list'
+  selector: 'page-list',
 })
 export class ListPage {
   private galleryPage;
@@ -26,8 +26,8 @@ export class ListPage {
   imageNbs = [];
   images: any;
   users: object = {};
-
-  alreadyLikedImage: boolean = false;
+  userGallery = [];
+  currentUser: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -36,13 +36,17 @@ export class ListPage {
               private ga: GoogleAnalytics,
               private deviceMotion: DeviceMotion,
               public alertCtrl: AlertController) {
+
     if (this.ga) this.ga.trackView('List page');
     this.galleryPage = GalleryPage;
     this.friendPage = FriendPage;
-    this.trackMovement();
+    this.currentUser = firebase.auth().currentUser;
+
+    //this.trackMovement();
   }
 
   ionViewWillEnter() {
+    this.fetchUserGallery();
     this.picsProvider.getPictures().subscribe((data) => {
       for (let key in data) {
         this.imageNbs.push(data[key].id);
@@ -65,7 +69,9 @@ export class ListPage {
   }
 
   openPage(page) {
-    this.navCtrl.push(page);
+    this.navCtrl.push(page, {
+      userGallery: this.userGallery
+    });
   }
 
   randUrl() {
@@ -77,30 +83,8 @@ export class ListPage {
     }
   }
 
-  addImageToGallery(image) {
-    let user = firebase.auth().currentUser;
-    firebase.database().ref().child('users/' + user.uid + '/gallery/').push(image);
-    this.alreadyLikedImage = true;
-  }
-
-  removeImageFromGallery(image) {
-    let user = firebase.auth().currentUser;
-    firebase.database().ref('users/' + user.uid + '/gallery/').once('value')
-      .then(
-        (snapshot) => {
-          for (let key in snapshot.val()) {
-            if (snapshot.val()[key] === image) {
-              firebase.database().ref().child('users/' + user.uid + '/gallery/' + key).remove();
-            }
-          }
-        },
-        (error) => this.errorHandling(error)
-      );
-    this.alreadyLikedImage = false;
-  }
-
   trackMovement() {
-    var subscription = this.deviceMotion.watchAcceleration({frequency:500}).subscribe(acc => {
+    this.deviceMotion.watchAcceleration({frequency:500}).subscribe(acc => {
 
       if (!this.lastX) {
         this.lastX = acc.x;
@@ -131,6 +115,20 @@ export class ListPage {
     });
   }
 
+  fetchUserGallery() {
+    this.userGallery = [];
+    firebase.database().ref('/users/' + this.currentUser.uid + '/gallery').once('value')
+      .then(
+        (snapshot) => {
+          let value = snapshot.val();
+          for (let key in value) {
+            this.userGallery.push(value[key]);
+          }
+        },
+        (error) => this.errorHandling(error)
+      );
+  }
+
   errorHandling(error) {
     let toast = this.toastCtrl.create({
       message: "Error " + error.code + ": " + error.message,
@@ -139,5 +137,4 @@ export class ListPage {
     });
     toast.present();
   }
-
 }

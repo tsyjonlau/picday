@@ -10,39 +10,54 @@ import firebase from 'firebase';
 })
 export class GalleryPage {
 
-  images = [];
+  gallery = [];
   currentUser: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController) {
     this.currentUser = firebase.auth().currentUser;
-    this.fetchGallery();
+    this.gallery = this.navParams.get('userGallery');
   }
 
-removeImageFromGallery(image) {
-  firebase.database().ref('users/' + this.currentUser.uid + '/gallery/').once('value')
-    .then(
-      (snapshot) => {
+  ionViewWillLeave() {
+    this.gallery.length = 0;
+  }
 
-        for (let key in snapshot.val()) {
-          if (snapshot.val()[key] === image) {
-            firebase.database().ref().child('users/' + this.currentUser.uid + '/gallery/' + key).remove();
+  removeImageFromGallery(image) {
+    firebase.database().ref('users/' + this.currentUser.uid + '/gallery/').once('value')
+      .then(
+        (snapshot) => {
 
-            for (let i = 0; i < this.images.length; ++i) {
-              if (this.images[i] == image) {
-                this.images.splice(i, 1);
+          for (let key in snapshot.val()) {
+            if (snapshot.val()[key] === image) {
+              firebase.database().ref().child('users/' + this.currentUser.uid + '/gallery/' + key).remove();
+
+              for (let i = 0; i < this.gallery.length; ++i) {
+                if (this.gallery[i] == image) {
+                  this.gallery.splice(i, 1);
+                }
               }
+
             }
-
           }
-        }
 
-      },
-      (error) => this.errorHandling(error)
-    );
+        },
+        (error) => this.errorHandling(error)
+      );
+    }
+
+  errorHandling(error) {
+    let toast = this.toastCtrl.create({
+      message: "Error " + error.code + ": " + error.message,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
   }
+}
 
+/*
   fetchGallery() {
     firebase.database().ref('/users/' + this.currentUser.uid + '/gallery').once('value')
     .then(
@@ -55,13 +70,4 @@ removeImageFromGallery(image) {
       (error) => this.errorHandling(error)
     );
   }
-
-  errorHandling(error) {
-    let toast = this.toastCtrl.create({
-      message: "Error " + error.code + ": " + error.message,
-      duration: 3000,
-      position: 'bottom'
-    });
-    toast.present();
-  }
-}
+*/
