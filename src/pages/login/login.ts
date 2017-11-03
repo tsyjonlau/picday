@@ -22,9 +22,6 @@ export class LoginPage {
               public toastCtrl: ToastController) {
   }
 
-  ionViewDidLoad() {
-  }
-
   onSubmit() {
     firebase.auth().signInWithEmailAndPassword(this.account.email, this.account.password)
       .then(

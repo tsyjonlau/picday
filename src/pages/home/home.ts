@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import {LoginPage } from '../login/login';
-import {SignupPage} from "../signup/signup";
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
+
+import { LoginPage } from '../login/login';
+import { SignupPage } from "../signup/signup";
 
 @Component({
   selector: 'page-home',

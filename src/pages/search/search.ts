@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController} from 'ionic-angular';
 
 import firebase from 'firebase';
 
@@ -22,7 +22,8 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public alertCtrl: AlertController) {
     this.currentUser = firebase.auth().currentUser;
     this.fetchUsers();
   }
@@ -37,23 +38,20 @@ export class SearchPage {
         this.keyUserFound = key;
         this.isSelf = (key == this.currentUser.uid)? true : false;
         this.checkFollowingState();
-      }
-      else {
-        // gestion d'erreur mais ptet pas avec ToastController car compotement louche
+        return;
       }
     }
+    this.userNotFoundAlert();
   }
 
   followUser() {
     firebase.database().ref().child('users/' + this.currentUser.uid + '/following/' + this.keyUserFound).set(this.result);
     this.alreadyFollowed = true;
-    this.fetchUsers()
   }
 
   unfollowUser() {
     firebase.database().ref().child('users/' + this.currentUser.uid + '/following/' + this.keyUserFound).remove();
     this.alreadyFollowed = false;
-    this.fetchUsers()
   }
 
   goToUser() {
@@ -92,4 +90,14 @@ export class SearchPage {
     });
     toast.present();
   }
+
+  userNotFoundAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Picday',
+      subTitle: "User " + this.query + " doesn't exist!",
+      buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+
 }
