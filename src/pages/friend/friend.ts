@@ -13,24 +13,25 @@ import { SearchPage } from '../search/search';
 })
 export class FriendPage {
 
-  friends = [];
+  friends: any;
   currentUser: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController) {
     this.currentUser = firebase.auth().currentUser;
-    this.fetchFriends();
   }
 
-  fetchFriends() {
+  ionViewWillEnter() {
+    this.friends = [];
     firebase.database().ref('users/' + this.currentUser.uid + '/following/').once('value')
       .then(
         (snapshot) => {
           for (let key in snapshot.val()) {
             this.friends.push({
               email: snapshot.val()[key],
-              uid: key
+              uid: key,
+              following: true
             });
           }
         },
@@ -57,5 +58,15 @@ export class FriendPage {
 
   goToSearchPage() {
     this.navCtrl.push(SearchPage);
+  }
+
+  followUser(friend) {
+    firebase.database().ref().child('users/' + this.currentUser.uid + '/following/' + friend.uid).set(friend.user);
+    friend.following = true;
+  }
+
+  unfollowUser(friend) {
+    firebase.database().ref().child('users/' + this.currentUser.uid + '/following/' + friend.uid).remove();
+    friend.following = false;
   }
 }

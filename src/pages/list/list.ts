@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import firebase from 'firebase';
@@ -12,13 +12,13 @@ import { PicturesProvider } from '../../providers/pictures/pictures';
   templateUrl: 'list.html',
   selector: 'page-list'
 })
-export class ListPage implements OnInit  {
+export class ListPage {
   //selectedItem: any;
   //icons: string[];
   //items: Array<{ title: string, note: string, icon: string }>;
   private galleryPage;
   private friendPage;
-  images = [];
+  images: any;
   users: object = {};
   alreadyLikedImage: boolean = false;
   imageNbs = [];
@@ -33,7 +33,7 @@ export class ListPage implements OnInit  {
     this.friendPage = FriendPage;
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.picsProvider.getPictures().subscribe((data) => {
       for (let key in data) {
         this.imageNbs.push(data[key].id);
@@ -60,8 +60,9 @@ export class ListPage implements OnInit  {
   }
 
   randUrl() {
+    this.images = [];
     var randurl = "https://picsum.photos/200/300?image=";
-    for(var i = 0; i < 100; i++){
+    for(var i = 0; i < 30; i++){
       var randnbr = Math.floor((Math.random() * this.imageNbs.length) + 1);
       this.images[i] = randurl + this.imageNbs[randnbr - 1];
     }

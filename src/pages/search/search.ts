@@ -45,9 +45,7 @@ export class SearchPage {
   }
 
   followUser() {
-    firebase.database().ref().child('users/' + this.currentUser.uid + '/following/').set({
-        [this.keyUserFound]: this.result
-    });
+    firebase.database().ref().child('users/' + this.currentUser.uid + '/following/' + this.keyUserFound).set(this.result);
     this.alreadyFollowed = true;
     this.fetchUsers()
   }
