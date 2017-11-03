@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar transparent>
+    <ion-title>{{ consultedUser }}</ion-title>
+      <ion-buttons end>
+        <button ion-button color="secondary" [hidden]="following" (click)="followUser()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <button ion-button color="danger" [hidden]="!following" (click)="unfollowUser()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="page-user-background">
+  <ion-grid *ngFor="let image of images">
+    <image-and-button [imageLink]="image" [userGallery]="userGallery" [waitBeforeUpdateLikeStatus]="false"></image-and-button>
+  </ion-grid>
+</ion-content>

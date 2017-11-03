@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "146132231289",
+    "firebase_url": "https://picday-39afd.firebaseio.com",
+    "project_id": "picday-39afd",
+    "storage_bucket": "picday-39afd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146132231289:android:668f747870fb00ac",
+        "android_client_info": {
+          "package_name": "com.ionicframework.picday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146132231289-175fapeg60vvd0rg5gcktj2f31een5f0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ionicframework.picday",
+            "certificate_hash": "f301e8b5540a4e153567bcf684b88ef15b5b1f84"
+          }
+        },
+        {
+          "client_id": "146132231289-jii5nvbovl9lp0d6gm6ihhikqkr4996t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkav7z8NQ3UEoY9WW_4Gsy9salYzSHoyE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146132231289-jii5nvbovl9lp0d6gm6ihhikqkr4996t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

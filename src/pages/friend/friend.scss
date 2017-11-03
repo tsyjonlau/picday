@@ -1,0 +1,28 @@
+page-friend {
+  .page-friend-background {
+    position: relative;
+    background: url('../assets/img/background.png') no-repeat transparent;
+    background-size: cover;
+    height: 100%;
+    z-index: 1;
+    background-repeat: repeat-x;
+  }
+
+  .page-friend-search-button {
+    margin-left: 29%;
+  }
+
+  /* CSS for ion-item background formatting */
+  .item-md {
+    background-color: transparent;
+    color: white;
+  }
+
+  /* CSS for nav-bar */
+    .back-button {
+      color: white;
+    }
+    .toolbar-title {
+      color: white;
+    }
+}

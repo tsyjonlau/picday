@@ -1,0 +1,36 @@
+page-list {
+  .page-list-background {
+    position: relative;
+    background: url('../assets/img/background.png') no-repeat transparent;
+    background-size: cover;
+    height: 100%;
+    z-index: 1;
+    background-repeat: repeat-x;
+  }
+
+  .white{
+    backgroung : yellow;
+    color : white;
+  }
+
+  .red{
+    background-color: #834c3b;
+  }
+
+  .green{
+    background-color: #5d864b;
+  }
+  .size_correction {
+    height: 100%;
+    width: 100%;
+  }
+
+  .margin_photo {
+
+    margin-top:25px;
+    margin-left:40px;
+  }
+
+}
+
+

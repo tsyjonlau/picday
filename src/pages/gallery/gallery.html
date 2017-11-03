@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar transparent>
+    <ion-title>My Gallery</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="page-gallery-background">
+  <ion-grid>
+    <ion-row *ngFor="let image of gallery">
+      <ion-col col-8>
+        <img class="margin_photo" width="200" height="300" [src]="image">
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button class="margin_photo" color="danger" (click)="removeImageFromGallery(image)">Remove</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

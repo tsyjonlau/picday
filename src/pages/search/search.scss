@@ -1,0 +1,36 @@
+page-search {
+  .page-search-background {
+    position: relative;
+    background: url('../assets/img/background.png') no-repeat transparent;
+    background-size: cover;
+    height: 100%;
+    z-index: 1;
+    background-repeat: repeat-x;
+  }
+  .page-search-item {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(255, 255, 255, 0);
+  }
+
+  /* CSS for disabling ion-item white border*/
+  .item-md.item-block .item-inner {
+    border-bottom: 0px
+  }
+
+  /* CSS for input transparency */
+  .text-input {
+    color: white;
+    background-color: transparent;
+  }
+  .item {
+    background-color: transparent;
+  }
+
+  /* CSS for nav-bar */
+    .back-button {
+      color: white;
+    }
+    .toolbar-title {
+      color: white;
+    }
+}
