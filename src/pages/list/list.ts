@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from "@angular/core";
+import { NavController, NavParams, AlertController, Content } from 'ionic-angular';
 import { DeviceMotion } from '@ionic-native/device-motion';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
@@ -29,7 +29,8 @@ export class ListPage {
   users: object = {};
   userGallery = [];
   currentUser: any;
-  displayList: boolean = true;
+  displayList: boolean = true
+  @ViewChild(Content) content: Content;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -45,10 +46,11 @@ export class ListPage {
     this.friendPage = FriendPage;
     this.currentUser = firebase.auth().currentUser;
 
-    //this.trackMovement();
+    this.trackMovement();
   }
 
   ionViewWillEnter() {
+    this.content.resize();
     this.fetchUserGallery();
     this.picsProvider.getPictures().subscribe((data) => {
       for (let key in data) {

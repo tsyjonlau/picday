@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import firebase from 'firebase';
@@ -17,6 +17,7 @@ export class FriendPage {
   friends: any;
   currentUser: any;
   userGallery: any;
+  @ViewChild(Content) content: Content;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -30,6 +31,7 @@ export class FriendPage {
   }
 
   ionViewWillEnter() {
+    this.content.resize();
     this.friends = [];
     firebase.database().ref('users/' + this.currentUser.uid + '/following/').once('value')
       .then(
