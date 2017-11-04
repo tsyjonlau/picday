@@ -8,7 +8,7 @@ Members:
 
 Picday needs to create an account to be used. This is possible from the home page.
 
-`![alt-text](https://picsum.photos/200/300?image=30)
+`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/images%2F01.jpg?alt=media&token=1e906f18-ba0b-454c-8b82-ec0e8c41acdb)
 
 Our application displays random images on the main page taken in a Picsum database.
 The user can add them to his personal gallery with the add button.
