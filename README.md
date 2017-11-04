@@ -4,7 +4,7 @@ Epitech promotion 2018 - Mobile Hybrid Project - Group 2
 
 Members:
 - [Benjamin Lépine](https://github.com/benjaminlepine): attented the course
-- [Tsy-Jon Lau](https://github.com/tsyjonlau): did not attended the course
+- [Tsy-Jon Lau](https://github.com/tsyjonlau): did not attend the course
 
 Deployed on Android only
 
@@ -23,7 +23,7 @@ The user can add them to his personal gallery with the add button.
 
 `![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-210120.png?alt=media&token=87d2d6c2-d9ec-4209-94f9-554caf70aaf9)
 
-He can also search for friends via the "search" page and add them. The search is done with the email address
+The user can also search for friends via the "search" page and add them. The search is done with the email address
 (example : gitlord@epitech.eu)
 
 `![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-210111.png?alt=media&token=cd52d991-be37-4358-a973-923023aa9f3f)
