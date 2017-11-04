@@ -12,7 +12,9 @@ import { SignupPage } from "../signup/signup";
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+              private ga: GoogleAnalytics) {
+    if (this.ga) this.ga.trackView('Home page');
   }
 
   login() {

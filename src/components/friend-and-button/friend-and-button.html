@@ -1,0 +1,15 @@
+<ion-row>
+  <ion-col col-10>
+    <ion-item (click)="goToFriendPage(friend)">
+      {{ friend.email }}
+    </ion-item>
+  </ion-col>
+  <ion-col col-2>
+    <button ion-button color="secondary" [hidden]="friend.following" (click)="followFriend(friend)">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <button ion-button color="danger" [hidden]="!friend.following" (click)="unfollowFriend(friend)">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-col>
+</ion-row>

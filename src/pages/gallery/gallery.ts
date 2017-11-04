@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 
 import firebase from 'firebase';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,9 @@ export class GalleryPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              private ga: GoogleAnalytics) {
+    if (this.ga) this.ga.trackView('My Gallery page');
     this.currentUser = firebase.auth().currentUser;
     this.gallery = this.navParams.get('userGallery');
   }

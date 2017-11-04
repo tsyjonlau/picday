@@ -33,11 +33,12 @@ export class ListPage {
               public navParams: NavParams,
               public toastCtrl: ToastController,
               private picsProvider: PicturesProvider,
-              private ga: GoogleAnalytics,
               private deviceMotion: DeviceMotion,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private ga: GoogleAnalytics) {
 
-    if (this.ga) this.ga.trackView('List page');
+    if (this.ga) this.ga.trackView('List page (random pics)');
+
     this.galleryPage = GalleryPage;
     this.friendPage = FriendPage;
     this.currentUser = firebase.auth().currentUser;

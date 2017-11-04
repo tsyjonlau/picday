@@ -1,23 +1,25 @@
 <ion-header>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <button ion-button color="dark" (click)="openPage(friendPage)">
-          Friends
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button color="dark" (click)="openPage(galleryPage)">
-          Gallery
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button color="dark" (click)="signOut()">
-          Logout
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-navbar hideBackButton transparent class="page-list-navbar">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4 class="page-list-col">
+          <button ion-button class="page-list-button" color="dark" (click)="openPage(friendPage)">
+            Friends
+          </button>
+        </ion-col>
+        <ion-col col-4 class="page-list-col">
+          <button ion-button class="page-list-button" color="dark" (click)="openPage(galleryPage)">
+            Gallery
+          </button>
+        </ion-col>
+        <ion-col col-4 class="page-list-col">
+          <button ion-button class="page-list-button" color="dark" (click)="signOut()">
+            Logout
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
 </ion-header>
 
 <ion-content class="page-list-background">

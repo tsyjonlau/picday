@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController} from 'ionic-angular';
 
 import firebase from 'firebase';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { UserPage } from '../user/user';
 
@@ -19,12 +20,16 @@ export class SearchPage {
   alreadyFollowed: boolean = false;
   isSelf: boolean = false;
   currentUser: any;
+  userGallery: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private ga: GoogleAnalytics) {
+    if (this.ga) this.ga.trackView('Search page for users');
     this.currentUser = firebase.auth().currentUser;
+    this.userGallery = this.navParams.get('userGallery');
     this.fetchUsers();
   }
 
@@ -58,7 +63,8 @@ export class SearchPage {
     this.navCtrl.push(UserPage, {
       user: this.result,
       uid: this.keyUserFound,
-      following: this.alreadyFollowed
+      following: this.alreadyFollowed,
+      userGallery: this.userGallery
     });
   }
 

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import firebase from 'firebase';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
-import { UserPage } from '../user/user';
 import { SearchPage } from '../search/search';
 
 @IonicPage()
@@ -19,9 +19,11 @@ export class FriendPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              private ga: GoogleAnalytics) {
+    if (this.ga) this.ga.trackView('Friend page (following list)');
     this.currentUser = firebase.auth().currentUser;
-    this.userGallery = this.navParams.get('userGallery')
+    this.userGallery = this.navParams.get('userGallery');
   }
 
   ionViewWillEnter() {
@@ -41,15 +43,6 @@ export class FriendPage {
       );
   }
 
-  goToFriendPage(friend) {
-    this.navCtrl.push(UserPage, {
-      user: friend.email,
-      uid: friend.uid,
-      following: true,
-      userGallery: this.userGallery
-    })
-  }
-
   errorHandling(error) {
     let toast = this.toastCtrl.create({
       message: "Error " + error.code + ": " + error.message,
@@ -63,15 +56,5 @@ export class FriendPage {
     this.navCtrl.push(SearchPage, {
       userGallery: this.userGallery
     });
-  }
-
-  followUser(friend) {
-    firebase.database().ref().child('users/' + this.currentUser.uid + '/following/' + friend.uid).set(friend.user);
-    friend.following = true;
-  }
-
-  unfollowUser(friend) {
-    firebase.database().ref().child('users/' + this.currentUser.uid + '/following/' + friend.uid).remove();
-    friend.following = false;
   }
 }

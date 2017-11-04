@@ -8,8 +8,6 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { DeviceMotion } from '@ionic-native/device-motion';
 
 import firebase from 'firebase';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -24,6 +22,7 @@ import { FriendPage } from '../pages/friend/friend';
 import { PicturesProvider } from '../providers/pictures/pictures';
 
 import { ImageAndButtonComponent } from "../components/image-and-button/image-and-button";
+import { FriendAndButtonComponent } from "../components/friend-and-button/friend-and-button";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAmORyTzdXawXfm39yUDg8XoxLTeW-lj-8",
@@ -46,13 +45,12 @@ firebase.initializeApp(firebaseConfig);
     UserPage,
     GalleryPage,
     FriendPage,
-    ImageAndButtonComponent
+    ImageAndButtonComponent,
+    FriendAndButtonComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
     HttpModule
   ],
   bootstrap: [IonicApp],

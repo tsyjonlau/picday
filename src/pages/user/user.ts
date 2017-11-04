@@ -24,7 +24,6 @@ export class UserPage {
     this.consultedUid = this.navParams.get("uid");
     this.following = this.navParams.get("following");
     this.userGallery = this.navParams.get("userGallery");
-    console.log(this.userGallery);
     this.currentUser = firebase.auth().currentUser;
     this.fetchGallery();
   }
