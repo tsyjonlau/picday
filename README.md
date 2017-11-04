@@ -30,13 +30,47 @@ They will be visible in the "friends" page. The user can go to the pictures of h
 
 ### Back-end
 
-We chose to use Firebase because this suits all our requirements such as:
-- Authentication
-- Database
+We chose to use Firebase because this suits all our requirements.
+
+- Firebase Authentication: authentication with username and password
+
+- Firebase Realtime Database:
+
+```json
+picday: {
+  users: {
+    user1_uid: {
+      email: user1@email.com,
+      following: {
+        user36_uid: user36@email.com,
+        user986_uid: user986@email.com,
+        ...
+      },
+      gallery: {
+        image1_id: image1_url,
+        image2_id: image2_url,
+        ...
+      }
+    },
+    user2_uid: {
+      email: user2@email.com,
+      following: {
+        user1_uid: user1@email.com,
+      },
+      gallery: {
+        image42_id: image42_url,
+      }
+    },
+    ...
+  }
+}
+```
 
 ### Native functionalities
 
-We used the accelerometer of the phone in order to detect shake movements which resets the random pictures displayed on the list of random pictures.
+- Accelerometer: shake movement dectection which resets the random pictures displayed on the list of random pictures.
+
+- Network: simple disconnection checking with alert window display
 
 ### Analytics
 

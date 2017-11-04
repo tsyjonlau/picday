@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-
-import firebase from 'firebase';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
+import firebase from 'firebase';
+
 import { SearchPage } from '../search/search';
+import { ToastErrorProvider } from '../../providers/toast-error/toast-error';
 
 @IonicPage()
 @Component({
@@ -19,9 +20,11 @@ export class FriendPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController,
+              public toastError: ToastErrorProvider,
               private ga: GoogleAnalytics) {
+
     if (this.ga) this.ga.trackView('Friend page (following list)');
+
     this.currentUser = firebase.auth().currentUser;
     this.userGallery = this.navParams.get('userGallery');
   }
@@ -39,17 +42,8 @@ export class FriendPage {
             });
           }
         },
-        (error) => this.errorHandling(error)
+        (error) => this.toastError.display(error.code, error.message)
       );
-  }
-
-  errorHandling(error) {
-    let toast = this.toastCtrl.create({
-      message: "Error " + error.code + ": " + error.message,
-      duration: 3000,
-      position: 'bottom'
-    });
-    toast.present();
   }
 
   goToSearchPage() {

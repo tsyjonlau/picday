@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import firebase from 'firebase';
+import { ToastErrorProvider } from '../../providers/toast-error/toast-error';
 
 @IonicPage()
 @Component({
@@ -19,7 +20,7 @@ export class UserPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController) {
+              public toastError: ToastErrorProvider) {
     this.consultedUser = this.navParams.get("user");
     this.consultedUid = this.navParams.get("uid");
     this.following = this.navParams.get("following");
@@ -37,7 +38,7 @@ export class UserPage {
           this.images.push(value[key]);
         }
       },
-      (error) => this.errorHandling(error)
+      (error) => this.toastError.display(error.code, error.message)
     );
   }
 
@@ -56,14 +57,4 @@ export class UserPage {
     firebase.database().ref().child('users/' + this.currentUser.uid + '/following/' + this.consultedUid).remove();
     this.following = false;
   }
-
-  errorHandling(error) {
-    let toast = this.toastCtrl.create({
-      message: "Error " + error.code + ": " + error.message,
-      duration: 3000,
-      position: 'bottom'
-    });
-    toast.present();
-  }
-
 }

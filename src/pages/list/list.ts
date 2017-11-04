@@ -1,14 +1,15 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DeviceMotion } from '@ionic-native/device-motion';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import firebase from 'firebase';
 
-import { HomePage } from '../home/home';
 import { GalleryPage } from '../gallery/gallery';
 import { FriendPage } from '../friend/friend';
 import { PicturesProvider } from '../../providers/pictures/pictures';
-import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { ToastErrorProvider } from '../../providers/toast-error/toast-error';
+
 
 @Component({
   templateUrl: 'list.html',
@@ -21,17 +22,18 @@ export class ListPage {
   private lastX: number;
   private lastY: number;
   private lastZ: number;
-  private moveCounter: number = 0;
+  private nbMoves: number = 0;
 
   imageNbs = [];
   images: any;
   users: object = {};
   userGallery = [];
   currentUser: any;
+  displayList: boolean = true;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController,
+              public toastError: ToastErrorProvider,
               private picsProvider: PicturesProvider,
               private deviceMotion: DeviceMotion,
               public alertCtrl: AlertController,
@@ -43,7 +45,7 @@ export class ListPage {
     this.friendPage = FriendPage;
     this.currentUser = firebase.auth().currentUser;
 
-    this.trackMovement();
+    //this.trackMovement();
   }
 
   ionViewWillEnter() {
@@ -58,15 +60,8 @@ export class ListPage {
 
   signOut() {
     firebase.auth().signOut().then(() => {
-      this.navCtrl.push(HomePage);
-    }).catch((error) => {
-      let toast = this.toastCtrl.create({
-        message: "Error " + error.code + ": " + error.message,
-        duration: 3000,
-        position: 'bottom'
-      });
-      toast.present();
-    });
+      this.navCtrl.popAll();
+    }).catch((error) => this.toastError.display(error.code, error.message));
   }
 
   openPage(page) {
@@ -78,41 +73,43 @@ export class ListPage {
   randUrl() {
     this.images = [];
     var randurl = "https://picsum.photos/200/300?image=";
-    for(var i = 0; i < 30; i++){
-      var randnbr = Math.floor((Math.random() * this.imageNbs.length) + 1);
+    for (let i = 0; i < 30; i++){
+      let randnbr = Math.floor((Math.random() * this.imageNbs.length) + 1);
       this.images[i] = randurl + this.imageNbs[randnbr - 1];
     }
   }
 
   trackMovement() {
-    this.deviceMotion.watchAcceleration({frequency:500}).subscribe(acc => {
+    this.deviceMotion.watchAcceleration({
+      frequency: 500
+    }).subscribe(cur => {
 
       if (!this.lastX) {
-        this.lastX = acc.x;
-        this.lastY = acc.y;
-        this.lastZ = acc.z;
+        this.lastX = cur.x;
+        this.lastY = cur.y;
+        this.lastZ = cur.z;
         return;
       }
 
       let deltaX:number, deltaY:number, deltaZ:number;
-      deltaX = Math.abs(acc.x-this.lastX);
-      deltaY = Math.abs(acc.y-this.lastY);
-      deltaZ = Math.abs(acc.z-this.lastZ);
+      deltaX = Math.abs(cur.x - this.lastX);
+      deltaY = Math.abs(cur.y - this.lastY);
+      deltaZ = Math.abs(cur.z - this.lastZ);
 
       if (deltaX + deltaY + deltaZ > 6) {
-        this.moveCounter++;
+        this.nbMoves++;
       } else {
-        this.moveCounter = Math.max(0, --this.moveCounter);
+        this.nbMoves = Math.max(0, --this.nbMoves);
       }
 
-      if (this.moveCounter > 2) {
+      if (this.nbMoves > 2) {
         this.randUrl();
-        this.moveCounter=0;
+        this.nbMoves = 0;
       }
 
-      this.lastX = acc.x;
-      this.lastY = acc.y;
-      this.lastZ = acc.z;
+      this.lastX = cur.x;
+      this.lastY = cur.y;
+      this.lastZ = cur.z;
     });
   }
 
@@ -126,16 +123,7 @@ export class ListPage {
             this.userGallery.push(value[key]);
           }
         },
-        (error) => this.errorHandling(error)
+        (error) => this.toastError.display(error.code, error.message)
       );
-  }
-
-  errorHandling(error) {
-    let toast = this.toastCtrl.create({
-      message: "Error " + error.code + ": " + error.message,
-      duration: 3000,
-      position: 'bottom'
-    });
-    toast.present();
   }
 }

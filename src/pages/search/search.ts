@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import firebase from 'firebase';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { UserPage } from '../user/user';
+import { ToastErrorProvider } from '../../providers/toast-error/toast-error';
 
 @IonicPage()
 @Component({
@@ -24,8 +25,7 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController,
-              public alertCtrl: AlertController,
+              public toastError: ToastErrorProvider,
               private ga: GoogleAnalytics) {
     if (this.ga) this.ga.trackView('Search page for users');
     this.currentUser = firebase.auth().currentUser;
@@ -46,7 +46,7 @@ export class SearchPage {
         return;
       }
     }
-    this.userNotFoundAlert();
+    this.toastError.display("", "User not found")
   }
 
   followUser() {
@@ -74,7 +74,7 @@ export class SearchPage {
         (snapshot) => {
           this.users = snapshot.val();
         },
-        (error) => this.errorHandling(error)
+        (error) => this.toastError.display(error.code, error.message)
       );
   }
 
@@ -87,23 +87,4 @@ export class SearchPage {
     }
     this.alreadyFollowed = false;
   }
-
-  errorHandling(error) {
-    let toast = this.toastCtrl.create({
-      message: "Error " + error.code + ": " + error.message,
-      duration: 3000,
-      position: 'bottom'
-    });
-    toast.present();
-  }
-
-  userNotFoundAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Picday',
-      subTitle: "User " + this.query + " doesn't exist!",
-      buttons: ['Dismiss']
-    });
-    alert.present();
-  }
-
 }

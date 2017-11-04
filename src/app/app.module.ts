@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, AlertController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { DeviceMotion } from '@ionic-native/device-motion';
+import { Network } from '@ionic-native/network';
 
 import firebase from 'firebase';
 
@@ -23,6 +24,7 @@ import { PicturesProvider } from '../providers/pictures/pictures';
 
 import { ImageAndButtonComponent } from "../components/image-and-button/image-and-button";
 import { FriendAndButtonComponent } from "../components/friend-and-button/friend-and-button";
+import { ToastErrorProvider } from '../providers/toast-error/toast-error';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAmORyTzdXawXfm39yUDg8XoxLTeW-lj-8",
@@ -71,7 +73,10 @@ firebase.initializeApp(firebaseConfig);
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PicturesProvider,
     GoogleAnalytics,
-    DeviceMotion
+    DeviceMotion,
+    Network,
+    AlertController,
+    ToastErrorProvider,
   ]
 })
 export class AppModule {}

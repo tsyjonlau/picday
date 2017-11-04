@@ -4,11 +4,10 @@
   </ion-col>
   <ion-col col-2>
     <button ion-button class="margin_photo" color="secondary" [hidden]="alreadyLikedImage" (click)="addImageToGallery()">
-      Add
+      +
     </button>
     <button ion-button class="margin_photo" color="danger" [hidden]="!alreadyLikedImage" (click)="removeImageFromGallery()">
-      Remove
+      -
     </button>
   </ion-col>
 </ion-row>
-

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
-
-import firebase from 'firebase';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
+import firebase from 'firebase';
+
 import { ListPage } from '../list/list';
+import { ToastErrorProvider } from '../../providers/toast-error/toast-error';
 
 @IonicPage()
 @Component({
@@ -20,8 +21,9 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController,
+              public toastError: ToastErrorProvider,
               private ga: GoogleAnalytics) {
+
     if (this.ga) this.ga.trackView('Signup page');
   }
 
@@ -35,14 +37,7 @@ export class SignupPage {
           });
           this.navCtrl.push(ListPage);
         },
-        (error) => {
-          let toast = this.toastCtrl.create({
-            message: "Error " + error.code + ": " + error.message,
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present()
-        }
+        (error) => this.toastError.display(error.code, error.display)
       );
   }
 }

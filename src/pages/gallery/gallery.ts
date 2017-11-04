@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import firebase from 'firebase';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+
+import { ToastErrorProvider } from '../../providers/toast-error/toast-error';
 
 @IonicPage()
 @Component({
@@ -16,7 +18,7 @@ export class GalleryPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController,
+              public toastError: ToastErrorProvider,
               private ga: GoogleAnalytics) {
     if (this.ga) this.ga.trackView('My Gallery page');
     this.currentUser = firebase.auth().currentUser;
@@ -46,31 +48,7 @@ export class GalleryPage {
           }
 
         },
-        (error) => this.errorHandling(error)
+        (error) => this.toastError.display(error.code, error.message)
       );
     }
-
-  errorHandling(error) {
-    let toast = this.toastCtrl.create({
-      message: "Error " + error.code + ": " + error.message,
-      duration: 3000,
-      position: 'bottom'
-    });
-    toast.present();
-  }
 }
-
-/*
-  fetchGallery() {
-    firebase.database().ref('/users/' + this.currentUser.uid + '/gallery').once('value')
-    .then(
-      (snapshot) => {
-        let value = snapshot.val();
-        for (let key in value) {
-          this.images.push(value[key]);
-        }
-      },
-      (error) => this.errorHandling(error)
-    );
-  }
-*/
