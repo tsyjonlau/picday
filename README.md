@@ -34,9 +34,9 @@ We chose to use Firebase because this suits all our requirements.
 
 - Firebase Authentication: authentication with username and password
 
-- Firebase Realtime Database:
+- Firebase Realtime Database data tree:
 
-```json
+```
 picday: {
   users: {
     user1_uid: {
