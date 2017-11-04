@@ -8,7 +8,7 @@ Members:
 
 Picday needs to create an account to be used. This is possible from the home page.
 
-https://photos.google.com/share/AF1QipO4kE9k5ZxqGvvlGdvrqQ0hb2y3YF8s84J1937Ex-xZDlizpr9Hc6WetXiSF8Lw9w/photo/AF1QipM5qAkKF678w-n1cGXgeN7Z2tf2iKXGdA8i4T41?key=RHRmZ19qZk9oUEU2QmRuRmlrc3RodjdkUkdtMFdR
+`![alt-text](https://photos.google.com/share/AF1QipO4kE9k5ZxqGvvlGdvrqQ0hb2y3YF8s84J1937Ex-xZDlizpr9Hc6WetXiSF8Lw9w/photo/AF1QipM5qAkKF678w-n1cGXgeN7Z2tf2iKXGdA8i4T41?key=RHRmZ19qZk9oUEU2QmRuRmlrc3RodjdkUkdtMFdR)
 
 Our application displays random images on the main page taken in a Picsum database.
 The user can add them to his personal gallery with the add button.
