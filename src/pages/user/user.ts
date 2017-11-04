@@ -43,7 +43,6 @@ export class UserPage {
   }
 
   addImageToGallery(image) {
-    let user = firebase.auth().currentUser;
     firebase.database().ref().child('users/' + this.currentUser.uid + '/gallery/').push(image);
   }
 

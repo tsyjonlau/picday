@@ -1,20 +1,15 @@
 <ion-content class="page-signup-background">
-  <span ion-fixed style="height: 100%; width: 100%">
-    <form class="page-signup-form" (submit)="onSubmit()">
-      <ion-grid>
-        <ion-row row-3>
-          <ion-input type="email" [(ngModel)]="account.email" name="email" placeholder="E-mail address"></ion-input>
-        </ion-row>
-        <ion-row row-3>
-          <ion-input type="password" [(ngModel)]="account.password" name="password" placeholder="Password"></ion-input>
-        </ion-row>
-        <ion-row row-6>
-          <button ion-button color="dark" block>Sign Up</button>
-        </ion-row>
-      </ion-grid>
-    </form>
-  </span>
+  <form class="page-signup-form" (submit)="onSubmit()">
+    <ion-grid>
+      <ion-row row-3>
+        <ion-input type="email" [(ngModel)]="account.email" name="email" placeholder="E-mail address"></ion-input>
+      </ion-row>
+      <ion-row row-3>
+        <ion-input type="password" [(ngModel)]="account.password" name="password" placeholder="Password"></ion-input>
+      </ion-row>
+      <ion-row row-6>
+        <button ion-button color="dark" block>Sign Up</button>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
-
-
-
