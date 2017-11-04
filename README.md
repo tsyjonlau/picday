@@ -10,21 +10,21 @@ Picday needs to create an account to be used. This is possible from the home pag
 
 `![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-205654.png?alt=media&token=d2a996d0-634d-4022-99f7-2db3a145a224)
 
-`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-205741.png?alt=media&token=0bf2fb14-7017-4481-9b04-b16795f57c26)
+`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-205741.png?alt=media&token=177524d1-00a1-449b-8120-a72e46d16a9b)
 
 Our application displays random images on the main page taken in a Picsum database.
 A new set of random pictures is generated if you shake the phone.
 
-`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-210043.png?alt=media&token=cc45bb9b-2e7e-4907-a3a1-0c0d0df85079)
+`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-210043.png?alt=media&token=7fcf9caf-1ffd-4c0f-980e-2c4d62ae0446)
 
 The user can add them to his personal gallery with the add button.
 
-`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-210120.png?alt=media&token=21a7fb91-2a3c-40c7-8533-4366c47d6b1e)
+`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-210120.png?alt=media&token=87d2d6c2-d9ec-4209-94f9-554caf70aaf9)
 
 He can also search for friends via the "search" page and add them. The search is done with the email address
 (example : gitlord@epitech.eu)
 
-`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-210111.png?alt=media&token=113f41a3-0e7a-44d6-b1fa-068a1dd76551)
+`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-210111.png?alt=media&token=cd52d991-be37-4358-a973-923023aa9f3f)
 
 They will be visible in the "friends" page. The user can go to the pictures of his friends and add them on his own "gallery" page.
 
