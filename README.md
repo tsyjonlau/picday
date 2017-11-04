@@ -8,7 +8,7 @@ Members:
 
 Picday needs to create an account to be used. This is possible from the home page.
 
-`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-205654.png?alt=media&token=9418dc98-c901-4c93-ae6b-f0f936e15695 =250x250)
+`![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-205654.png?alt=media&token=9418dc98-c901-4c93-ae6b-f0f936e15695  | width=100)
 
 `![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-205741.png?alt=media&token=0bf2fb14-7017-4481-9b04-b16795f57c26)
 
