@@ -6,6 +6,8 @@ Members:
 - [Benjamin Lépine](https://github.com/benjaminlepine): attented the course
 - [Tsy-Jon Lau](https://github.com/tsyjonlau): did not attended the course
 
+Deployed on Android only
+
 Picday needs to create an account to be used. This is possible from the home page.
 
 `![alt-text](https://firebasestorage.googleapis.com/v0/b/picday-39afd.appspot.com/o/screenshots%2FScreenshot_20171104-205654.png?alt=media&token=d2a996d0-634d-4022-99f7-2db3a145a224)
